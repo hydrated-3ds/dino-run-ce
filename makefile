@@ -5,10 +5,10 @@
 # Set COMPRESSED to "YES" to create a compressed program
 # ----------------------------
 
-NAME        ?= DINO
+NAME        ?= DINOHYDRO
 COMPRESSED  ?= YES
 ICON        ?= iconc.png
-DESCRIPTION ?= "Dino Run CE"
+DESCRIPTION ?= "Hydro's Dino Run CE"
 
 # ----------------------------
 # Other Options (Advanced)
