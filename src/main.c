@@ -48,15 +48,19 @@ bool play(void) {
 
 #if USE_USB
         duck_pressed = kb_IsDown(kb_KeyDown) ||
+                       kb_IsDown(kb_Alpha) ||
                        any_hid_held(KEY_DOWN) ||
                        any_hid_mouse_held(HID_MOUSE_RIGHT);
         jump_pressed = kb_IsDown(kb_KeyUp) ||
+                       kb_IsDown(kb_Key2nd) ||
                        any_hid_held(KEY_UP) ||
                        any_hid_held(KEY_SPACE) ||
                        any_hid_mouse_held(HID_MOUSE_LEFT);
 #else
-        duck_pressed = kb_IsDown(kb_KeyDown);
-        jump_pressed = kb_IsDown(kb_KeyUp);
+        duck_pressed = kb_IsDown(kb_KeyDown) ||
+                       kb_IsDown(kb_Alpha);
+        jump_pressed = kb_IsDown(kb_KeyUp) ||
+                       kb_IsDown(kb_Key2nd);
 #endif
 
         game.dino.ducking = duck_pressed && game.dino.on_ground;
@@ -131,10 +135,14 @@ bool game_over(void) {
 #endif
 
         kb_Scan();
-
+        
+        if(kb_IsDown(kb_KeyDown)) return true;
         if(kb_IsDown(kb_KeyClear)) return true;
+        if(kb_IsDown(kb_KeyAlpha)) return true;
         if(kb_IsDown(kb_KeyEnter)) return false;
         if(kb_IsDown(kb_Key2nd)) return false;
+        if(kb_IsDown(kb_KeyUp)) return true;
+        
 #if USE_SOUND
       update_sound_player(&game.sound_player);
 #endif
