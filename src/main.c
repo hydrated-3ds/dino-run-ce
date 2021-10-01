@@ -96,6 +96,7 @@ bool play(void) {
             timer_IntAcknowledge = TIMER1_MATCH1;
             kb_Scan();
             if(kb_IsDown(kb_KeyClear)) break;
+            if(kb_IsDown(kb_KeyMode)) break;
 #if USE_SOUND
             update_sound_player(&game.sound_player);
 #endif
@@ -139,6 +140,7 @@ bool game_over(void) {
         if(kb_IsDown(kb_KeyDown)) return true;
         if(kb_IsDown(kb_KeyClear)) return true;
         if(kb_IsDown(kb_KeyAlpha)) return true;
+        if(kb_IsDown(kb_KeyMode)) return true;
         if(kb_IsDown(kb_KeyEnter)) return false;
         if(kb_IsDown(kb_Key2nd)) return false;
         if(kb_IsDown(kb_KeyUp)) return true;
